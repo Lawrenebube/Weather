@@ -54,10 +54,6 @@ let weather = {
             let year = myDate.getFullYear();
             let date = `${daa}/${month}/${year}` ;
             document.querySelector(".date").innerText= date;
-            let hour = addZero(myDate.getHours());
-            let minutes = addZero(myDate.getMinutes());
-            let time = `${hour}:${minutes}`;
-            document.querySelector(".time").innerText=time;
             document.querySelector(".img").src =
             `https://openweathermap.org/img/wn/${icon}.png`;
             document.querySelector(".scribe").innerText= description;
@@ -68,24 +64,37 @@ let weather = {
             document.body.style.backgroundImage = "url('https://source.unsplash.com/1600x900/?" + name + "')";
         },
     };
+    function displayTime() {
+        let myDate = new Date();
+        let hours = addZero(myDate.getHours());
+        let minutes = addZero(myDate.getMinutes());
+        let seconds = addZero(myDate.getSeconds());
+        let time = `${hours}:${minutes}:${seconds}`;
+        var oneSecond = 1000;
+        document.querySelector(".time").innerText=time;
+        setInterval(displayTime, oneSecond);
+};
+    displayTime();
+    
     function addZero(num){
         return num < 10 ? `0${num}`:num;
     };
      
-            function search(){
-               const searchResult =  document.querySelector(".textArea").value;
-               weather.fetchWeather(searchResult);
-            };
+    function search(){
+        const searchResult =  document.querySelector(".textArea").value;
+        weather.fetchWeather(searchResult);
+        
+    };
 
-           document.querySelector("i").addEventListener("click", search);
-           
-            
-           document.querySelector(".textArea").addEventListener("keyup", function (event) {
-                if (event.key == "Enter") {
-                search();
-                }
-           });
-           weather.fetchWeather("lagos");
+    document.querySelector("i").addEventListener("click", search);
+    
+    
+    document.querySelector(".textArea").addEventListener("keyup", function (event) {
+        if (event.key == "Enter") {
+        search();
+        }
+    });
+    weather.fetchWeather("lagos");
 
 
 
