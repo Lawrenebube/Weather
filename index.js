@@ -72,7 +72,7 @@ let weather = {
         let time = `${hours}:${minutes}:${seconds}`;
         var oneSecond = 1000;
         document.querySelector(".time").innerText=time;
-        setInterval(displayTime, oneSecond);
+        // setInterval(displayTime, oneSecond);
 };
     displayTime();
     
